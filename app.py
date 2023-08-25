@@ -80,7 +80,7 @@ def create_notification(notification_type, new_entry, current_entry):
         new_price = new_entry['finalPrice']['value']
         price_difference = previous_price - new_price
         percentage_difference = round((price_difference / previous_price) * 100)
-        message_body = f'Price Drop Alert 🚨 🚨 🚨\n \n{new_entry["title"]} \nhas dropped from ${current_entry["price"]} to ${new_entry["finalPrice"]["value"]}. ${price_difference}({percentage_difference}%) drop\n \n{new_entry["input"]["url"]} '
+        message_body = f'Price Drop Alert 🚨 🚨 🚨\n \n{new_entry["title"]} \nhas dropped from ${current_entry["price"]} to ${new_entry["finalPrice"]["value"]}. ${price_difference} ({percentage_difference}%) drop\n \n{new_entry["input"]["url"]} '
         send_notification(message_body)
     else:
         print("Invalid notification type")

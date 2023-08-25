@@ -2,3 +2,4 @@ Flask
 firebase_admin
 twilio
 python-dotenv
+gunicorn
