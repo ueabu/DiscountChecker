@@ -6,10 +6,12 @@ from twilio.rest import Client
 import config
 from enum import Enum
 import json
+import logging
 
 
 app = Flask(__name__)
 app.config.from_object(config.Config)
+logger = logging.getLogger()
 
 
 # Fetch the service account key JSON file contents
@@ -34,9 +36,13 @@ def index():
 def check_discount_entry():
     
     new_entry_json = request.json
+    print(new_entry_json)
+    logging.info(new_entry_json)
+
 
     for item in new_entry_json:
         if 'ASIN' in item:
+            print('Amazon Item')
             handle_amazon_entry(item)          
 
     return "OK"
@@ -46,12 +52,15 @@ def handle_amazon_entry(new_entry):
     ref = db.reference('Amazon')
     amazon_ref = ref.child(new_entry['ASIN'])
     amazon_ref_data = amazon_ref.get()
-
+    print(amazon_ref_data)
     if amazon_ref_data is None:
+        print("New Entry")
         add_new_amazon_entry(new_entry)
         create_notification(Notification_type.CREATION, new_entry, current_entry=None)
     else:
+        print("Existing Entry")
         if(discount_present(amazon_ref_data['price'], new_entry['finalPrice']['value'])):
+            print("Price Drop")
             create_notification(Notification_type.UPDATE, new_entry, amazon_ref_data)
             update_amazon_entry(new_entry)
     
