@@ -9,4 +9,5 @@ class Config(object):
     TWILO_AUTH_TOKEN = os.getenv('TWILO_AUTH_TOKEN')
     TWILO_FROM_NUMBER = os.getenv('TWILO_FROM_NUMBER')
     TWILO_TO_NUMBER = os.getenv('TWILO_TO_NUMBER')
+    SERVICE_ACCOUNT = os.getenv('SERVICE_ACCOUNT')
     DEBUG = os.getenv("DEBUG") or False

@@ -5,13 +5,15 @@ from firebase_admin import db
 from twilio.rest import Client
 import config
 from enum import Enum
+import json
 
 
 app = Flask(__name__)
 app.config.from_object(config.Config)
 
+
 # Fetch the service account key JSON file contents
-cred = credentials.Certificate('serviceaccount.json')
+cred = credentials.Certificate(json.loads(app.config['SERVICE_ACCOUNT']))
 # Initialize the app with a service account, granting admin privileges
 
 firebase_admin.initialize_app(cred, {
