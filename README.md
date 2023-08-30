@@ -9,7 +9,7 @@ Requirements and Prerequistes
 
 Create a `.env` file and add the following variables
 
-`
+```
 DATABASE_URL = DB_URL_FROM_FIREBASE
 TWILO_ACCOUNT_SID = TWILLO_ACCOUNT_SID_FROM_TWILIO
 TWILO_AUTH_TOKEN = TWILLO_AUTH_TOKEN_FROM_TWILIO
@@ -19,8 +19,9 @@ TWILO_TO_NUMBER = YOUR_PHONE_NUMBER
 SERVICE_ACCOUNT = '{
     Service Account Data From firebase json file. 
 }'
-`
+```
 
+``````
 Create a virtual environment using `python3 -m venv antenv`
 Activate the Virtual Environment Mac: `source antevn/bin/activate` Windows: `antenv/Scripts/activate`
 Upgrade pip `python3 -m pip install --upgrade pip`
@@ -30,4 +31,4 @@ Run the app `python3 -m flask --app app.py run`
 It should be running on `http://127.0.0.1:5000`.
 `http://127.0.0.1:5000/` - Should return up and running is the server is up
 `http://127.0.0.1:5000/checkdiscount` - The endpoint that recieves the discount data.
-
+``````
