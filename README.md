@@ -1,7 +1,7 @@
 # DiscountChecker
 An API that receives price data for an item from BrightData. It then checks to see if the stored price in the database is lower that the received price. If it is, it sends a notification via whatsapp to me!
 
-For Code Explaination see: https://youtu.be/kYyr-s9rN5E
+For Code Explaination see: https://youtu.be/dcnORcRpU34
 
 ## Setting Up Locally
 Requirements and Prerequistes
