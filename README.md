@@ -1,6 +1,8 @@
 # DiscountChecker
 An API that receives price data for an item from BrightData. It then checks to see if the stored price in the database is lower that the received price. If it is, it sends a notification via whatsapp to me!
 
+For Code Explaination see: https://youtu.be/kYyr-s9rN5E
+
 ## Setting Up Locally
 Requirements and Prerequistes
 1. Source to get e-commerce data from. Checkout https://brdta.com/umaabu to learn more! 
@@ -31,3 +33,4 @@ It should be running on `http://127.0.0.1:5000`.
 `http://127.0.0.1:5000/` - Should return up and running is the server is up
 `http://127.0.0.1:5000/checkdiscount` - The endpoint that recieves the discount data.
 
+Happy Coding!
