@@ -21,7 +21,7 @@ SERVICE_ACCOUNT = '{
 }'
 ```
 
-# Next Steps
+### Next Steps
 1. Create a virtual environment using `python3 -m venv antenv`
 2. Activate the Virtual Environment Mac: `source antevn/bin/activate` Windows: `antenv/Scripts/activate`
 3. Upgrade pip `python3 -m pip install --upgrade pip`
