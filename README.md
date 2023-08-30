@@ -21,14 +21,14 @@ SERVICE_ACCOUNT = '{
 }'
 ```
 
-``````
-Create a virtual environment using `python3 -m venv antenv`
-Activate the Virtual Environment Mac: `source antevn/bin/activate` Windows: `antenv/Scripts/activate`
-Upgrade pip `python3 -m pip install --upgrade pip`
-Install requirements in the requirements.txt file `pip install -r requirement.txt`
-Run the app `python3 -m flask --app app.py run`
+# Next Steps
+1. Create a virtual environment using `python3 -m venv antenv`
+2. Activate the Virtual Environment Mac: `source antevn/bin/activate` Windows: `antenv/Scripts/activate`
+3. Upgrade pip `python3 -m pip install --upgrade pip`
+4. Install requirements in the requirements.txt file `pip install -r requirement.txt`
+5. Run the app `python3 -m flask --app app.py run`
 
 It should be running on `http://127.0.0.1:5000`.
 `http://127.0.0.1:5000/` - Should return up and running is the server is up
 `http://127.0.0.1:5000/checkdiscount` - The endpoint that recieves the discount data.
-``````
+
