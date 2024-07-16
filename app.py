@@ -7,7 +7,7 @@ import config
 from enum import Enum
 import json
 import logging
-
+ 
 
 app = Flask(__name__)
 app.config.from_object(config.Config)
@@ -50,7 +50,7 @@ def check_discount_entry():
             handle_walmart_entry(item)
         elif 'ebay' in item['product_url']:
             print('Ebay Item')
-            handle_ebay_search(item)
+            handle_ebay_search(item) 
     return "OK"
 
 def handle_amazon_entry(new_entry):
@@ -63,7 +63,7 @@ def handle_amazon_entry(new_entry):
     else:
         if(discount_present(amazon_ref_data['price'], new_entry['finalPrice']['value'])):
             create_notification_amazon(Notification_type.UPDATE, new_entry, amazon_ref_data)
-            update_amazon_entry(new_entry)
+            update_amazon_entry(new_entry)  
 
 
 def handle_ikea_entry(new_entry):
@@ -94,7 +94,7 @@ def handle_walmart_entry(new_entry):
 def handle_ebay_search(new_entry):
     total_price = new_entry['price']['value'] + new_entry['shipping_price']['value']
 
-    if(total_price < 500):
+    if(total_price < 500 and new_entry['listing_type'] == 'buy it now' and new_entry['condition'] == 'Good - Refurbished'):
         create_notification_ebay_search(new_entry)
 
     
@@ -157,7 +157,7 @@ def create_notification_amazon(notification_type, new_entry, current_entry):
     elif notification_type == Notification_type.UPDATE:
         previous_price = current_entry["price"]
         new_price = new_entry['finalPrice']['value']
-        price_difference = previous_price - new_price
+        price_difference = round(previous_price - new_price)
         percentage_difference = round((price_difference / previous_price) * 100)
         message_body = f'Price Drop Alert 🚨 🚨 🚨\n \n{new_entry["title"]} \nhas dropped from ${current_entry["price"]} to ${new_entry["finalPrice"]["value"]}. ${price_difference} ({percentage_difference}%) drop\n \n{new_entry["input"]["url"]} '
         send_notification(message_body)
@@ -188,7 +188,7 @@ def create_notification_walmart(notification_type, new_entry, current_entry):
         new_price = new_entry['final_price']['value']
         price_difference = previous_price - new_price
         percentage_difference = round((price_difference / previous_price) * 100)
-        message_body = f'Price Drop Alert 🚨 🚨 🚨\n \n{new_entry["product_name"]} \nhas dropped from ${current_entry["price"]} to ${new_entry["final_price"]["value"]}. ${price_difference} ({percentage_difference}%) drop\n \n{new_entry["input"]["url"]} '
+        message_body = f'🚨 🚨 🚨\n \n{new_entry["product_name"]} ${new_entry["final_price"]["value"]}. \n{new_entry["input"]["url"]} '
         send_notification(message_body)
     else:
         print("Invalid notification type")
@@ -203,6 +203,9 @@ def discount_present(initial_price, todays_price):
         return True
     else:
         return False
+
+
+
 
 def send_notification(message_body):
     client = Client(twilo_account_sid, twilo_auth_token)
