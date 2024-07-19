@@ -147,7 +147,7 @@ def update_walmart_entry(new_entry):
     walmart_ref = db.reference('Walmart')
     walmart_ref_child = walmart_ref.child(new_entry['sku'])
     walmart_ref_child.update({
-        'price': new_entry['final_price']['value'],
+        'price': new_entry['final_price']['value']
     })
 
 def create_notification_amazon(notification_type, new_entry, current_entry):
